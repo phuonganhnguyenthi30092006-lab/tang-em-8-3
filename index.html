@@ -5,38 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gửi Công Chúa Của Anh</title>
     <style>
-        body { background-color: #ffeef0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Arial', sans-serif; overflow: hidden; }
-        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; max-width: 450px; border: 2px solid #ff4d6d; }
-        h1 { color: #ff4d6d; }
+        body { background: #ffeef0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Arial', sans-serif; overflow: hidden; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 90%; max-width: 400px; border: 2px solid #ff4d6d; z-index: 10; }
+        h1 { color: #ff4d6d; font-size: 22px; }
         p { color: #555; line-height: 1.6; }
-        .btn-group { margin-top: 20px; position: relative; height: 50px; }
-        button { padding: 10px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: 0.3s; }
-        #yes { background-color: #ff4d6d; color: white; margin-right: 10px; }
-        #no { background-color: #ccc; color: #333; position: absolute; }
-        .heart { position: absolute; color: #ff4d6d; animation: move 4s linear infinite; opacity: 0; }
-        @keyframes move { 0% { transform: translateY(100vh); opacity: 1; } 100% { transform: translateY(-10vh); opacity: 0; } }
+        .btn-group { margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 100px; }
+        button { border: none; border-radius: 10px; cursor: pointer; font-size: 16px; transition: all 0.3s ease; font-weight: bold; }
+        #yes { background-color: #ff4d6d; color: white; padding: 15px 30px; }
+        #no { background-color: #ccc; color: #333; padding: 10px 20px; }
+        #message { margin-top: 15px; color: #ff4d6d; font-weight: bold; min-height: 24px; font-style: italic; }
+        .heart { position: absolute; color: #ff4d6d; animation: float 4s linear infinite; opacity: 0; pointer-events: none; }
+        @keyframes float { 0% { transform: translateY(100vh); opacity: 1; } 100% { transform: translateY(-10vh); opacity: 0; } }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>8/3 Rạng Rỡ Nhé! 🌹</h1>
+        <h1>Chúc mừng ngày 8/3! 🌹</h1>
         <p>Gửi công chúa của anh,</p>
         <p>Chẳng biết từ bao giờ, hình bóng em đã lấp đầy tâm trí anh. Anh thích nụ cười và sự dịu dàng của em vô cùng...</p>
-        <p><b>Anh thực sự rất thích em. Làm người yêu anh nhé? ❤️</b></p>
+        <p><b>Anh thực sự rất thích em. <br>Làm người yêu anh nhé? ❤️</b></p>
+        
+        <div id="message"></div>
+
         <div class="btn-group">
-            <button id="yes" onclick="alert('Anh biết mà! Tối nay 7h anh qua đón công chúa nhé! ❤️')">Đồng ý!</button>
-            <button id="no">Không nha</button>
+            <button id="yes" onclick="accepted()">Đồng ý!</button>
+            <button id="no" onclick="declined()">Từ chối</button>
         </div>
     </div>
 
     <script>
+        let clickCount = 0;
+        const messages = [
+            "Ơ kìa, em suy nghĩ lại đi...",
+            "Anh buồn đấy nhé! 🥺",
+            "Cho anh một cơ hội mà...",
+            "Nút từ chối sắp biến mất rồi đó!",
+            "Em không thoát được đâu! 😂",
+            "Bấm nút ĐỒNG Ý bên cạnh kìa em!"
+        ];
+
         const noBtn = document.getElementById('no');
-        noBtn.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
-            noBtn.style.left = x + 'px';
-            noBtn.style.top = y + 'px';
-        });
+        const yesBtn = document.getElementById('yes');
+        const messageBox = document.getElementById('message');
+
+        function declined() {
+            clickCount++;
+            
+            // 1. Hiển thị tin nhắn năn nỉ
+            let msgIndex = Math.min(clickCount - 1, messages.length - 1);
+            messageBox.innerHTML = messages[msgIndex];
+
+            // 2. Làm nút "Từ chối" nhỏ lại
+            let newNoSize = 1 - (clickCount * 0.15);
+            if (newNoSize > 0.2) {
+                noBtn.style.transform = `scale(${newNoSize})`;
+            } else {
+                noBtn.style.display = 'none'; // Nhỏ quá thì biến mất luôn
+            }
+
+            // 3. Làm nút "Đồng ý" to lên để kích thích bấm vào
+            let newYesSize = 1 + (clickCount * 0.2);
+            yesBtn.style.transform = `scale(${newYesSize})`;
+        }
+
+        function accepted() {
+            alert("Anh biết mà! Tối nay 7h anh qua đón công chúa nhé! ❤️");
+            document.body.innerHTML = `
+                <div style="text-align:center; color:#ff4d6d; margin-top:20vh;">
+                    <h1>YÊU EM NHẤT TRÊN ĐỜI! ❤️❤️❤️</h1>
+                    <p style="font-size: 20px;">Hẹn gặp em vào tối nay nhé!</p>
+                </div>
+            `;
+        }
 
         function createHeart() {
             const heart = document.createElement('div');
