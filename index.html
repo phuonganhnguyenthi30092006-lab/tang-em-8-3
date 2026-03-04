@@ -3,154 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông Điệp Đặc Biệt Dành Cho Em</title>
+    <title>Gửi Công Chúa Của Anh</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); /* Font hiện đại */
-
-        body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e); /* Gradient nền tối */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            color: #e0e0e0;
-            overflow: hidden;
-            position: relative;
-        }
-        .card {
-            background: rgba(25, 25, 40, 0.9); /* Nền card trong suốt mờ */
-            border: 1px solid rgba(70, 70, 100, 0.5); /* Viền mờ */
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.7); /* Đổ bóng sâu */
-            text-align: center;
-            width: 90%;
-            max-width: 450px;
-            z-index: 10;
-            animation: fadeIn 1s ease-out; /* Hiệu ứng hiện ra */
-            position: relative; /* Quan trọng cho việc đặt text lỗi */
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 {
-            color: #8be9fd; /* Màu xanh neon */
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 8px rgba(139, 233, 253, 0.6); /* Hiệu ứng glow */
-        }
-        p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #b3b3cc;
-            margin-bottom: 15px;
-        }
-        .highlight {
-            color: #ff79c6; /* Màu hồng neon */
-            font-weight: bold;
-            display: block;
-            margin: 20px 0;
-            font-size: 1.3rem;
-            text-shadow: 0 0 10px rgba(255, 121, 198, 0.7);
-        }
-
-        .btn-group {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            min-height: 80px; /* Đảm bảo đủ không gian cho nút */
-        }
-        button {
-            border: none;
-            border-radius: 25px; /* Nút bo tròn */
-            cursor: pointer;
-            font-size: 1.05rem;
-            font-weight: bold;
-            padding: 12px 28px;
-            transition: all 0.3s ease; /* Hiệu ứng mượt mà */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        #yes {
-            background: linear-gradient(45deg, #ff79c6, #ffb86c); /* Gradient hồng cam */
-            color: #1a1a2e;
-            transform-origin: center; /* Quan trọng cho hiệu ứng scale */
-        }
-        #yes:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 121, 198, 0.5);
-        }
-        #no {
-            background: #44475a; /* Xám đậm */
-            color: #f8f8f2;
-            transform-origin: center;
-        }
-        #no:hover {
-            background: #55586a;
-        }
-        
-        #message {
-            margin-top: 20px;
-            color: #ff6e6e; /* Màu đỏ nổi bật cho lỗi/cảnh báo */
-            font-weight: bold;
-            min-height: 24px;
-            font-style: italic;
-            font-size: 0.95rem;
-            opacity: 0; /* Mặc định ẩn */
-            animation: messageFadeIn 0.5s forwards; /* Hiệu ứng hiện ra */
-        }
-        @keyframes messageFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hiệu ứng hạt bụi sao lấp lánh */
-        .star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            opacity: 0;
-            animation: twinkle 5s linear infinite;
-        }
-        @keyframes twinkle {
-            0% { transform: scale(0); opacity: 0; }
-            50% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0); opacity: 0; }
-        }
+        body { background: #ffeef0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Arial', sans-serif; overflow: hidden; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 90%; max-width: 400px; border: 2px solid #ff4d6d; z-index: 10; }
+        h1 { color: #ff4d6d; font-size: 22px; }
+        p { color: #555; line-height: 1.6; }
+        .btn-group { margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 100px; }
+        button { border: none; border-radius: 10px; cursor: pointer; font-size: 16px; transition: all 0.3s ease; font-weight: bold; }
+        #yes { background-color: #ff4d6d; color: white; padding: 15px 30px; }
+        #no { background-color: #ccc; color: #333; padding: 10px 20px; }
+        #message { margin-top: 15px; color: #ff4d6d; font-weight: bold; min-height: 24px; font-style: italic; }
+        .heart { position: absolute; color: #ff4d6d; animation: float 4s linear infinite; opacity: 0; pointer-events: none; }
+        @keyframes float { 0% { transform: translateY(100vh); opacity: 1; } 100% { transform: translateY(-10vh); opacity: 0; } }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>THÔNG ĐIỆP TỪ ANH</h1>
+        <h1>Chúc mừng ngày 8/3! 🌹</h1>
         <p>Gửi công chúa của anh,</p>
         <p>Chẳng biết từ bao giờ, hình bóng em đã lấp đầy tâm trí anh. Anh thích nụ cười và sự dịu dàng của em vô cùng...</p>
-        <span class="highlight">ANH THỰC SỰ RẤT THÍCH EM.<br>LÀM NGƯỜI YÊU ANH NHÉ? ❤️</span>
+        <p><b>Anh thực sự rất thích em. <br>Làm người yêu anh nhé? ❤️</b></p>
         
         <div id="message"></div>
 
         <div class="btn-group">
-            <button id="yes" onclick="accepted()">ĐỒNG Ý!</button>
-            <button id="no" onclick="declined()">KHÔNG</button>
+            <button id="yes" onclick="accepted()">Đồng ý!</button>
+            <button id="no" onclick="declined()">Từ chối</button>
         </div>
     </div>
 
     <script>
         let clickCount = 0;
         const messages = [
-            "Lỗi hệ thống: Em chưa chọn đúng.",
-            "Cảnh báo: Lựa chọn này không khả dụng.",
-            "Thông báo: Vẫn còn cơ hội để sửa lỗi.",
-            "Lỗi nghiêm trọng: Trái tim anh đang bị tấn công!",
-            "Cần quyền truy cập: Hãy cho anh được yêu em!",
-            "Dữ liệu không hợp lệ: Chỉ có 'ĐỒNG Ý' là chấp nhận được."
+            "Ơ kìa, em suy nghĩ lại đi...",
+            "Anh buồn đấy nhé! 🥺",
+            "Cho anh một cơ hội mà...",
+            "Nút từ chối sắp biến mất rồi đó!",
+            "Em không thoát được đâu! 😂",
+            "Bấm nút ĐỒNG Ý bên cạnh kìa em!"
         ];
 
         const noBtn = document.getElementById('no');
@@ -160,66 +51,43 @@
         function declined() {
             clickCount++;
             
-            // 1. Hiển thị tin nhắn "lỗi hệ thống"
+            // 1. Hiển thị tin nhắn năn nỉ
             let msgIndex = Math.min(clickCount - 1, messages.length - 1);
             messageBox.innerHTML = messages[msgIndex];
-            messageBox.style.opacity = 1; // Đảm bảo tin nhắn hiện ra
 
             // 2. Làm nút "Từ chối" nhỏ lại
-            let newNoSize = 1 - (clickCount * 0.15); // Nhỏ 15% mỗi lần bấm
-            if (newNoSize > 0.1) { // Giới hạn nhỏ nhất là 10% kích thước gốc
+            let newNoSize = 1 - (clickCount * 0.15);
+            if (newNoSize > 0.2) {
                 noBtn.style.transform = `scale(${newNoSize})`;
             } else {
-                noBtn.style.display = 'none'; // Biến mất hẳn
-                messageBox.innerHTML = "Lỗi nghiêm trọng: Nút 'KHÔNG' đã bị vô hiệu hóa.";
+                noBtn.style.display = 'none'; // Nhỏ quá thì biến mất luôn
             }
 
-            // 3. Làm nút "Đồng ý" to lên (nhấn mạnh)
-            let newYesSize = 1 + (clickCount * 0.1); // To lên 10% mỗi lần
+            // 3. Làm nút "Đồng ý" to lên để kích thích bấm vào
+            let newYesSize = 1 + (clickCount * 0.2);
             yesBtn.style.transform = `scale(${newYesSize})`;
         }
 
         function accepted() {
-            alert("Đã nhận thông điệp! YÊU công chúa của anh nhất! ❤️");
+            alert("Anh yêu công chúa của anh nhất! ❤️");
             document.body.innerHTML = `
-                <div style="text-align:center; color:#8be9fd; margin-top:20vh; animation: fadeIn 2s ease-out;">
-                    <h1 style="font-size: 2.5rem; text-shadow: 0 0 15px rgba(139, 233, 253, 0.8);">YÊU EM NHẤT TRÊN ĐỜI! ❤️❤️❤️</h1>
-                    <p style="font-size: 1.2rem; color: #b3b3cc;">Thông điệp đã được gửi thành công!</p>
-                    <p style="font-size: 1.2rem; color: #b3b3cc;">Hẹn gặp em vào tối nay nhé!</p>
+                <div style="text-align:center; color:#ff4d6d; margin-top:20vh;">
+                    <h1>YÊU EM NHẤT TRÊN ĐỜI! ❤️❤️❤️</h1>
+                    <p style="font-size: 20px;">Chúc em những điều tốt đẹp nhất!</p>
                 </div>
             `;
-            // Dừng tạo tim và tạo sao lấp lánh khi chấp nhận
-            clearInterval(heartInterval);
-            createStars(50); // Tạo 50 ngôi sao lấp lánh
         }
 
-        // Tạo hiệu ứng tim bay
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
         }
-        const heartInterval = setInterval(createHeart, 250);
-
-        // Tạo hiệu ứng sao lấp lánh khi chấp nhận
-        function createStars(count) {
-            for (let i = 0; i < count; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                star.style.width = Math.random() * 3 + 1 + 'px';
-                star.style.height = star.style.width;
-                star.style.left = Math.random() * 100 + 'vw';
-                star.style.top = Math.random() * 100 + 'vh';
-                star.style.animationDelay = Math.random() * 5 + 's';
-                document.body.appendChild(star);
-            }
-        }
+        setInterval(createHeart, 300);
     </script>
 </body>
 </html>
-
