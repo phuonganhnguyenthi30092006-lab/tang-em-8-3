@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi Công Chúa Của Anh</title>
+    <style>
+        body { background-color: #ffeef0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Arial', sans-serif; overflow: hidden; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; max-width: 450px; border: 2px solid #ff4d6d; }
+        h1 { color: #ff4d6d; }
+        p { color: #555; line-height: 1.6; }
+        .btn-group { margin-top: 20px; position: relative; height: 50px; }
+        button { padding: 10px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        #yes { background-color: #ff4d6d; color: white; margin-right: 10px; }
+        #no { background-color: #ccc; color: #333; position: absolute; }
+        .heart { position: absolute; color: #ff4d6d; animation: move 4s linear infinite; opacity: 0; }
+        @keyframes move { 0% { transform: translateY(100vh); opacity: 1; } 100% { transform: translateY(-10vh); opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>8/3 Rạng Rỡ Nhé! 🌹</h1>
+        <p>Gửi công chúa của anh,</p>
+        <p>Chẳng biết từ bao giờ, hình bóng em đã lấp đầy tâm trí anh. Anh thích nụ cười và sự dịu dàng của em vô cùng...</p>
+        <p><b>Anh thực sự rất thích em. Làm người yêu anh nhé? ❤️</b></p>
+        <div class="btn-group">
+            <button id="yes" onclick="alert('Anh biết mà! Tối nay 7h anh qua đón công chúa nhé! ❤️')">Đồng ý!</button>
+            <button id="no">Không nha</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('no');
+        noBtn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
