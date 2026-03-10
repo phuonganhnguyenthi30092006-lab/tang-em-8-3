@@ -2,92 +2,124 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gửi Công Chúa Của Anh</title>
+    <title>Gửi Công Chúa 2010</title>
     <style>
-        body { background: #ffeef0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: 'Arial', sans-serif; overflow: hidden; }
-        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 90%; max-width: 400px; border: 2px solid #ff4d6d; z-index: 10; }
-        h1 { color: #ff4d6d; font-size: 22px; }
-        p { color: #555; line-height: 1.6; }
-        .btn-group { margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 100px; }
-        button { border: none; border-radius: 10px; cursor: pointer; font-size: 16px; transition: all 0.3s ease; font-weight: bold; }
-        #yes { background-color: #ff4d6d; color: white; padding: 15px 30px; }
-        #no { background-color: #ccc; color: #333; padding: 10px 20px; }
-        #message { margin-top: 15px; color: #ff4d6d; font-weight: bold; min-height: 24px; font-style: italic; }
-        .heart { position: absolute; color: #ff4d6d; animation: float 4s linear infinite; opacity: 0; pointer-events: none; }
-        @keyframes float { 0% { transform: translateY(100vh); opacity: 1; } 100% { transform: translateY(-10vh); opacity: 0; } }
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            transform-style: preserve-3d;
+            animation: rotateScene 15s infinite linear;
+        }
+
+        /* Hiệu ứng xoay toàn bộ cảnh */
+        @keyframes rotateScene {
+            from { transform: rotateY(0deg) rotateX(10deg); }
+            to { transform: rotateY(360deg) rotateX(10deg); }
+        }
+
+        /* Trái tim ở giữa */
+        .heart {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #ff2d75;
+            left: 75px;
+            top: 75px;
+            transform: rotate(-45deg);
+            box-shadow: 0 0 40px #ff2d75;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #ff2d75;
+            border-radius: 50%;
+        }
+
+        .heart::before { top: -75px; left: 0; }
+        .heart::after { left: 75px; top: 0; }
+
+        .heart img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: rotate(45deg) scale(1.2);
+            z-index: 10;
+        }
+
+        /* Các vòng chữ xoay quanh */
+        .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-style: preserve-3d;
+        }
+
+        .char {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #ffeb3b;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ffeb3b;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Chúc mừng ngày 8/3! 🌹</h1>
-        <p>Gửi công chúa của anh,</p>
-        <p>Chẳng biết từ bao giờ, hình bóng em đã lấp đầy tâm trí anh. Anh thích nụ cười và sự dịu dàng của em vô cùng...</p>
-        <p><b>Anh thực sự rất thích em. <br>Làm người yêu anh nhé? ❤️</b></p>
-        
-        <div id="message"></div>
 
-        <div class="btn-group">
-            <button id="yes" onclick="accepted()">Đồng ý!</button>
-            <button id="no" onclick="declined()">Từ chối</button>
-        </div>
+<div class="container">
+    <div class="heart">
+        <img src="love.jpg" alt="Love">
     </div>
+    <div id="ring-container"></div>
+</div>
 
-    <script>
-        let clickCount = 0;
-        const messages = [
-            "Ơ kìa, em suy nghĩ lại đi...",
-            "Anh buồn đấy nhé! 🥺",
-            "Cho anh một cơ hội mà...",
-            "Nút từ chối sắp biến mất rồi đó!",
-            "Em không thoát được đâu! 😂",
-            "Bấm nút ĐỒNG Ý bên cạnh kìa em!"
-        ];
+<script>
+    const text = "ANH YÊU EM NHIỀU THẾ THÔI... VƯỢT QUA NGỌN GIÓ VƯỢT QUA ĐẠI DƯƠNG... ";
+    const ringContainer = document.getElementById('ring-container');
+    const radius = 250; // Độ rộng của vòng chữ
 
-        const noBtn = document.getElementById('no');
-        const yesBtn = document.getElementById('yes');
-        const messageBox = document.getElementById('message');
-
-        function declined() {
-            clickCount++;
-            
-            // 1. Hiển thị tin nhắn năn nỉ
-            let msgIndex = Math.min(clickCount - 1, messages.length - 1);
-            messageBox.innerHTML = messages[msgIndex];
-
-            // 2. Làm nút "Từ chối" nhỏ lại
-            let newNoSize = 1 - (clickCount * 0.15);
-            if (newNoSize > 0.2) {
-                noBtn.style.transform = `scale(${newNoSize})`;
-            } else {
-                noBtn.style.display = 'none'; // Nhỏ quá thì biến mất luôn
-            }
-
-            // 3. Làm nút "Đồng ý" to lên để kích thích bấm vào
-            let newYesSize = 1 + (clickCount * 0.2);
-            yesBtn.style.transform = `scale(${newYesSize})`;
+    // Tạo vòng chữ 1
+    function createRing(text, yOffset, speed) {
+        const ring = document.createElement('div');
+        ring.className = 'ring';
+        ring.style.animation = `rotateRing ${speed}s infinite linear`;
+        
+        for (let i = 0; i < text.length; i++) {
+            const span = document.createElement('span');
+            span.className = 'char';
+            span.innerText = text[i];
+            const angle = (i / text.length) * 360;
+            span.style.transform = `rotateY(${angle}deg) translateZ(${radius}px) translateY(${yOffset}px)`;
+            ring.appendChild(span);
         }
+        ringContainer.appendChild(ring);
+    }
 
-        function accepted() {
-            alert("Anh yêu công chúa của anh nhất! ❤️");
-            document.body.innerHTML = `
-                <div style="text-align:center; color:#ff4d6d; margin-top:20vh;">
-                    <h1>YÊU EM NHẤT TRÊN ĐỜI! ❤️❤️❤️</h1>
-                    <p style="font-size: 20px;">Chúc em những điều tốt đẹp nhất!</p>
-                </div>
-            `;
-        }
+    // Bạn có thể tạo nhiều vòng với độ cao (yOffset) khác nhau
+    createRing(text, 0, 10);
+    createRing("MÃI BÊN NHAU NHÉ 2011 ❤️ 2010 ", 60, 15);
+</script>
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
-        setInterval(createHeart, 300);
-    </script>
 </body>
 </html>
